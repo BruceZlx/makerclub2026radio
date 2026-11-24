@@ -1,0 +1,15 @@
+audit: blocked
+facts: logic_code=True code=False host=True s3=False hardware=False
+BLOCKED: B01 正式 8 城表不完整，严格发布校验失败。
+BLOCKED: B03 缺 8 份合法离线音频及逐源来源记录。
+BLOCKED: B02 缺 16 条真实在线源及逐源实测记录。
+BLOCKED: B04 既有完整播放器源码、依赖和构建脚本未接收。
+BLOCKED: B05 硬件 IO 未确认；硬件构建必须明确失败，不能采用默认 GPIO。
+BLOCKED: B06 本地 Wi-Fi 配置缺失；不影响主机逻辑，但阻止实机联调。
+BLOCKED: B07 本机未安装 arduino-cli，未执行 S3 真实编译。
+BLOCKED: B08 未生成任何 .bin；不得宣称存在可刷写固件。
+BLOCKED: B09 T01-T22 未全部实机实测通过；P0 整体保持未完成。
+BLOCKED: B11 S3 真实目标板编译/上传未执行。
+BLOCKED: B12 2 小时活动模式/200 次混合操作、独立构建上传回归未在实机执行。
+report: /Users/bruce/Documents/club/radio-project/evidence/acceptance-report.json
+manifest: /Users/bruce/Documents/club/radio-project/release/manifest.json

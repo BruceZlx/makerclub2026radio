@@ -1,0 +1,169 @@
+{
+  "schema_version": 1,
+  "status": "pass",
+  "markdown": {
+    "path": "/Users/bruce/Documents/club/output/短波穿越电台软件开发计划.md",
+    "sha256": "f19ee66864122cbf1795fbc58e08839066e39e5a4fcb911dc4ad262265d65b29"
+  },
+  "docx": {
+    "path": "/Users/bruce/Documents/club/output/短波穿越电台软件开发计划.docx",
+    "sha256": "f2334b534152540ded025cb187688572aa7e1e8c73419f12bfdc1405c8383258"
+  },
+  "checks": [
+    {
+      "name": "markdown_exists",
+      "passed": true,
+      "detail": "/Users/bruce/Documents/club/output/短波穿越电台软件开发计划.md"
+    },
+    {
+      "name": "docx_exists",
+      "passed": true,
+      "detail": "/Users/bruce/Documents/club/output/短波穿越电台软件开发计划.docx"
+    },
+    {
+      "name": "docx_readable",
+      "passed": true,
+      "detail": "word/document.xml"
+    },
+    {
+      "name": "markdown_version_1_2",
+      "passed": true,
+      "detail": "版本：1.2"
+    },
+    {
+      "name": "markdown_date",
+      "passed": true,
+      "detail": "日期：2026年11月24日"
+    },
+    {
+      "name": "markdown_s3_target",
+      "passed": true,
+      "detail": "ESP32-S3"
+    },
+    {
+      "name": "markdown_after_initial_load",
+      "passed": true,
+      "detail": "AFTER_INITIAL_LOAD"
+    },
+    {
+      "name": "markdown_last_user_input",
+      "passed": true,
+      "detail": "LAST_USER_INPUT"
+    },
+    {
+      "name": "markdown_protocol_v2",
+      "passed": true,
+      "detail": "协议 v2"
+    },
+    {
+      "name": "markdown_baseline_commit",
+      "passed": true,
+      "detail": "34dc4e022780cb75b48db99211a10f1e8ae60a66"
+    },
+    {
+      "name": "markdown_user_choice",
+      "passed": true,
+      "detail": "本次用户选择"
+    },
+    {
+      "name": "markdown_not_partner_approval",
+      "passed": true,
+      "detail": "不追认为 partner"
+    },
+    {
+      "name": "markdown_implementation_status",
+      "passed": true,
+      "detail": "15 v1.2 实施状态"
+    },
+    {
+      "name": "markdown_no_v1_1_version",
+      "passed": true,
+      "detail": "版本：1.1"
+    },
+    {
+      "name": "markdown_no_wrover_baseline",
+      "passed": true,
+      "detail": "ESP32-WROVER"
+    },
+    {
+      "name": "word_version_1_2",
+      "passed": true,
+      "detail": "版本：1.2"
+    },
+    {
+      "name": "word_s3_target",
+      "passed": true,
+      "detail": "ESP32-S3"
+    },
+    {
+      "name": "word_after_initial_load",
+      "passed": true,
+      "detail": "AFTER_INITIAL_LOAD"
+    },
+    {
+      "name": "word_last_user_input",
+      "passed": true,
+      "detail": "LAST_USER_INPUT"
+    },
+    {
+      "name": "word_protocol_v2",
+      "passed": true,
+      "detail": "协议 v2"
+    },
+    {
+      "name": "word_baseline_commit",
+      "passed": true,
+      "detail": "34dc4e022780cb75b48db99211a10f1e8ae60a66"
+    },
+    {
+      "name": "word_user_choice",
+      "passed": true,
+      "detail": "本次用户选择"
+    },
+    {
+      "name": "word_not_partner_approval",
+      "passed": true,
+      "detail": "不追认为 partner"
+    },
+    {
+      "name": "word_implementation_status",
+      "passed": true,
+      "detail": "15 v1.2 实施状态"
+    },
+    {
+      "name": "word_no_v1_1_version",
+      "passed": true,
+      "detail": "版本：1.1"
+    },
+    {
+      "name": "word_no_wrover_baseline",
+      "passed": true,
+      "detail": "ESP32-WROVER"
+    },
+    {
+      "name": "word_footer_1_2",
+      "passed": true,
+      "detail": "软件开发计划 1.2  |  \n1"
+    },
+    {
+      "name": "s3_consistent",
+      "passed": true,
+      "detail": "ESP32-S3"
+    },
+    {
+      "name": "r2_consistent",
+      "passed": true,
+      "detail": "AFTER_INITIAL_LOAD"
+    },
+    {
+      "name": "r3_consistent",
+      "passed": true,
+      "detail": "协议 v2"
+    },
+    {
+      "name": "baseline_consistent",
+      "passed": true,
+      "detail": "34dc4e022780cb75b48db99211a10f1e8ae60a66"
+    }
+  ]
+}

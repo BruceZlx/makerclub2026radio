@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "fixture": true,
+  "config_id": "A2514588",
+  "city_count": 8,
+  "origin": {
+    "code": "SHA",
+    "name": "上海",
+    "longitude": 121.4737,
+    "latitude": 31.2304
+  },
+  "cities": [
+    {
+      "id": 0,
+      "code": "FIX_A",
+      "name": "示例城市甲",
+      "displayOrder": 0,
+      "longitude": 139.6917,
+      "latitude": 35.6895,
+      "x": 888.0324999999999,
+      "y": 150.86249999999998,
+      "crosses_dateline": false
+    },
+    {
+      "id": 1,
+      "code": "FIX_B",
+      "name": "示例城市乙",
+      "displayOrder": 1,
+      "longitude": 103.8198,
+      "latitude": 1.3521,
+      "x": 788.3883333333332,
+      "y": 246.24416666666664,
+      "crosses_dateline": false
+    },
+    {
+      "id": 2,
+      "code": "FIX_C",
+      "name": "示例城市丙",
+      "displayOrder": 2,
+      "longitude": 151.2093,
+      "latitude": -33.8688,
+      "x": 920.0258333333334,
+      "y": 344.08,
+      "crosses_dateline": false
+    },
+    {
+      "id": 3,
+      "code": "FIX_D",
+      "name": "示例城市丁",
+      "displayOrder": 3,
+      "longitude": 2.3522,
+      "latitude": 48.8566,
+      "x": 506.53388888888895,
+      "y": 114.28722222222223,
+      "crosses_dateline": false
+    },
+    {
+      "id": 4,
+      "code": "FIX_E",
+      "name": "示例城市戊",
+      "displayOrder": 4,
+      "longitude": 31.2357,
+      "latitude": 30.0444,
+      "x": 586.7658333333334,
+      "y": 166.54333333333335,
+      "crosses_dateline": false
+    },
+    {
+      "id": 5,
+      "code": "FIX_F",
+      "name": "示例城市己",
+      "displayOrder": 5,
+      "longitude": -74.006,
+      "latitude": 40.7128,
+      "x": 294.4277777777778,
+      "y": 136.9088888888889,
+      "crosses_dateline": true
+    },
+    {
+      "id": 6,
+      "code": "FIX_G",
+      "name": "示例城市庚",
+      "displayOrder": 6,
+      "longitude": -43.1729,
+      "latitude": -22.9068,
+      "x": 380.0752777777778,
+      "y": 313.63,
+      "crosses_dateline": false
+    },
+    {
+      "id": 7,
+      "code": "FIX_H",
+      "name": "示例城市辛",
+      "displayOrder": 7,
+      "longitude": -170.0,
+      "latitude": -20.0,
+      "x": 27.777777777777775,
+      "y": 305.5555555555556,
+      "crosses_dateline": true
+    }
+  ],
+  "warning": "FIXTURE PREVIEW ONLY - not a production 8-city acceptance."
+}

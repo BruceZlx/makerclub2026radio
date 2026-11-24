@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" width="320" height="180" role="img" aria-label="待机动画预览">
+<style>
+  .standby-bg { fill: #07111f; }
+  .ring { fill: none; stroke: #46d3ff; stroke-width: 1.4; opacity: 0;
+          animation: standby 3.2s ease-out infinite; }
+  .core { fill: #5eead4; }
+  .standby-text { fill: #e8f4ff; font: 700 16px -apple-system, "PingFang SC", sans-serif; }
+  .standby-sub { fill: #9fb7c9; font: 11px ui-monospace, Menlo, monospace; }
+  @keyframes standby { 0% { opacity: 0.8; r: 6; } 70% { opacity: 0; r: 54; } 100% { opacity: 0; r: 54; } }
+</style>
+
+<rect class="standby-bg" x="0" y="0" width="320" height="180"/>
+<circle class="ring" cx="160" cy="82" r="6"/>
+<circle class="ring" cx="160" cy="82" r="6" style="animation-delay:1.05s"/>
+<circle class="ring" cx="160" cy="82" r="6" style="animation-delay:2.1s"/>
+<circle class="core" cx="160" cy="82" r="5"/>
+<text class="standby-text" x="160" y="140" text-anchor="middle">待机动画预览</text>
+<text class="standby-sub" x="160" y="158" text-anchor="middle">STANDBY / 20 s idle</text>
+</svg>

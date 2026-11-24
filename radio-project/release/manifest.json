@@ -1,0 +1,259 @@
+{
+  "schema_version": 1,
+  "release_status": "blocked",
+  "release_ready": false,
+  "generated_at": "2026-11-24T14:10:20.714918+00:00",
+  "baseline_commit": "34dc4e022780cb75b48db99211a10f1e8ae60a66",
+  "binaries": [],
+  "facts": {
+    "logic_code_complete": true,
+    "code_complete": false,
+    "host_passed": true,
+    "s3_compiled": false,
+    "hardware_passed": false
+  },
+  "files": [
+    {
+      "path": "../output/短波穿越电台软件开发计划.docx",
+      "sha256": "f2334b534152540ded025cb187688572aa7e1e8c73419f12bfdc1405c8383258"
+    },
+    {
+      "path": "../output/短波穿越电台软件开发计划.md",
+      "sha256": "f19ee66864122cbf1795fbc58e08839066e39e5a4fcb911dc4ad262265d65b29"
+    },
+    {
+      "path": "README.md",
+      "sha256": "0158918c01a347ff4c4aa943c7fc56700086ed6fa1a74248ff9d58ca6759ec8e"
+    },
+    {
+      "path": "config/cities.json",
+      "sha256": "4ba2c7a6b13ba804802542d70d025360624bbbc4c7ef6573f32f88d71d8dbbc2"
+    },
+    {
+      "path": "config/environment.lock.md",
+      "sha256": "c287b4d2c70097b6e0b74762964287f1ff1cb005b51a58546f6df291113c7146"
+    },
+    {
+      "path": "config/hardware_pins.example.h",
+      "sha256": "c7f720ea5a0f70c1aecd747b5f053a422f4af540700419e8df78540d38544630"
+    },
+    {
+      "path": "docs/audio-integration.md",
+      "sha256": "15ce94642cb7270d5794acfd118d14bc166f5fd0f9b56aa2c84015beb1a3640f"
+    },
+    {
+      "path": "docs/build-and-upload.md",
+      "sha256": "77d87a5c7d2c910a5d66210fa840095f7d874b4c31d9c8dd236cf957afc198d2"
+    },
+    {
+      "path": "docs/continued-development.md",
+      "sha256": "0f23ce9e89909217dfec7284e67a586fe97a94325c9d91fdeaa32999557a1b1e"
+    },
+    {
+      "path": "docs/delivery-report.md",
+      "sha256": "8e50a966799abedf42ef89a6237dfb82feeaa41375ba44ef9b6ecae68b2aaea4"
+    },
+    {
+      "path": "docs/display-integration.md",
+      "sha256": "2011a783e0abfedb7ee9c6de228dec1545efc481f4e37aea3cdef12adda950ab"
+    },
+    {
+      "path": "docs/hardware-test-matrix.md",
+      "sha256": "afa38832b54b2673508f190f8f137556248dd196be879f159b93acf6a49f47cc"
+    },
+    {
+      "path": "docs/materials.md",
+      "sha256": "02dbbd6986996fbf048cc02bcc331c44bd2f629dfbe9f9c65be02ff18a069844"
+    },
+    {
+      "path": "docs/missing-inputs.md",
+      "sha256": "c67d91e22084cea7b8a30ca10c247269f90690c19572f7f563929862e71e2672"
+    },
+    {
+      "path": "docs/player-integration-status.md",
+      "sha256": "dc9dfd0ee69d02ba0048d83a60a907d008672c5457dfc8bdf25257edd5b22a8f"
+    },
+    {
+      "path": "docs/protocol-v2.md",
+      "sha256": "2b827bcf3c23c695c8212bb257dc13c98765520f57f8e10a37c91ed7f53fc675"
+    },
+    {
+      "path": "evidence/README.md",
+      "sha256": "efc68aeecc1b70a8bae4c82973888859178edd9bc8958d47756d6e467ff94877"
+    },
+    {
+      "path": "firmware/display_b/display_controller.cpp",
+      "sha256": "f72bad5a13acd8fe4b2f250296d86558c42634884f3259736941b5250b8289ca"
+    },
+    {
+      "path": "firmware/display_b/display_controller.h",
+      "sha256": "a9b218eb1af6358903d74a5af18e5a99487018e869d7c778ca2ba386f78ce487"
+    },
+    {
+      "path": "firmware/display_b/display_link.cpp",
+      "sha256": "cc2e114e32f07c8b75bf713702123867f73b258eecc2f274f19a7b5964ae6883"
+    },
+    {
+      "path": "firmware/display_b/display_link.h",
+      "sha256": "db73d728c1c35092d314b5039b20cde46faf2e84b9742b3e401b144288161ba7"
+    },
+    {
+      "path": "firmware/radio_a/audio_adapter.cpp",
+      "sha256": "980f5c27ba5b21bc862df08917de3fc2911546aa57f399dde151b4b2488059c5"
+    },
+    {
+      "path": "firmware/radio_a/audio_adapter.h",
+      "sha256": "e807de7f5d05d1a14cfedbb91c29e6841eb45e4af2975122f4839522cd265cd6"
+    },
+    {
+      "path": "firmware/radio_a/radio_link.cpp",
+      "sha256": "5b96b75e2bcd936d54335d578e7c60bc49cc4013906d34df21be34f6dbb56dba"
+    },
+    {
+      "path": "firmware/radio_a/radio_link.h",
+      "sha256": "15c5be2c7bdd075c10323bdf5bf44c70a4d388243a15a27c1c8ba4f27d8a5d62"
+    },
+    {
+      "path": "firmware/radio_a/sd_audio_catalog.cpp",
+      "sha256": "5562a00fd7b60f0f5b1bdbac67f38d2dc8bc146121624d55a193b9bfe8573cdb"
+    },
+    {
+      "path": "firmware/radio_a/sd_audio_catalog.h",
+      "sha256": "22b57d2a6018ba7b933309d8e8ccc60ea9370396f0c1a7a7142af462ef6352fc"
+    },
+    {
+      "path": "firmware/radio_a/wifi_service.cpp",
+      "sha256": "468d10f86bc08e48aab4d6c1cdd1714295b373227ec8512b1a3802bfa5c492ff"
+    },
+    {
+      "path": "firmware/radio_a/wifi_service.h",
+      "sha256": "facb401d4402cce99276b6b73c8d9f901242aba217316f49c55284227bf774aa"
+    },
+    {
+      "path": "firmware/shared/app_controller.cpp",
+      "sha256": "9cd5e5a30348fd55192bcc68deca9a32b17129ee6d8e116a948830128f13b45f"
+    },
+    {
+      "path": "firmware/shared/app_controller.h",
+      "sha256": "3cbc432aa84f2ea03267b882867282b3f90e91a4d02698a17feec85cce60f333"
+    },
+    {
+      "path": "firmware/shared/city_catalog.cpp",
+      "sha256": "1bb25240bec6daf961b491bb3e785ba4c6e630ebdef5e9d0cf876bb0d5bf0936"
+    },
+    {
+      "path": "firmware/shared/city_catalog.h",
+      "sha256": "aa3b6a670d52afea543058f4f786a03a042718f655016707948a3b09ad9b552a"
+    },
+    {
+      "path": "firmware/shared/input_service.cpp",
+      "sha256": "02bf4d80c7a5d009c6b694e894b44bd91c589742c6da0948a48d4551627e002e"
+    },
+    {
+      "path": "firmware/shared/input_service.h",
+      "sha256": "e1f9835a6d70bd4b53071b6d2e5b609a5949168c5e7f3aaf70aaa1a31fa8257a"
+    },
+    {
+      "path": "firmware/shared/map_renderer.cpp",
+      "sha256": "8f59f33a983f373a0f0e6b81a9b30ed75d7960303402690d85ffabd7389d8a14"
+    },
+    {
+      "path": "firmware/shared/map_renderer.h",
+      "sha256": "9b4df77eda48a3784f9b8fa12334bcff1d100e6595019d7e2d0b62fa0eadba46"
+    },
+    {
+      "path": "firmware/shared/protocol_v2.cpp",
+      "sha256": "54c34ffd05a2a39bd344bcb508b3fd05a27f38e58bfac03c1e558de79d7610ef"
+    },
+    {
+      "path": "firmware/shared/protocol_v2.h",
+      "sha256": "f46e584e2668095c9c9fbcf09037ce37f2527270d2f56a578533054e16aceb17"
+    },
+    {
+      "path": "firmware/shared/source_manager.cpp",
+      "sha256": "870969d24ba74f05f0c6aaa652aae99fb851a53d8d72b737794765cec09b242d"
+    },
+    {
+      "path": "firmware/shared/source_manager.h",
+      "sha256": "c9a4894ed77e373e9bf2b2fcd628f154bfe60ff6278fc4ebef429b50cc4c31b3"
+    },
+    {
+      "path": "release/README.md",
+      "sha256": "e28b555af777dbb645a08bb22366e30a9f1e2d51625594bd8f651ebc7c9d8dfd"
+    },
+    {
+      "path": "scripts/audit_delivery.py",
+      "sha256": "93d16f1bbe3feb55079374149e69f7b5342a58c95b84af3c579d29290a31704e"
+    },
+    {
+      "path": "scripts/build_firmware.py",
+      "sha256": "2e773e54dd997fc80e573dabebb7067b913d96df5caa963fb38caf4f0e20f520"
+    },
+    {
+      "path": "scripts/check_config.py",
+      "sha256": "e1a4d2944cf32af17442ce1c9bd21389791d858776916f079050ea818c1fdc74"
+    },
+    {
+      "path": "scripts/check_documents.py",
+      "sha256": "49acdc56ec18a127655790efc62b709dca9d270488989e4590a195521710738b"
+    },
+    {
+      "path": "scripts/generate_city_data.py",
+      "sha256": "4dcde174235cd191ccb65088a1fb65a3a5b9f36938bd27bcd12a5343fae34b08"
+    },
+    {
+      "path": "scripts/radio_config.py",
+      "sha256": "cae9af17520864a46d38302f203ed71a201fee521febed2d6fa8d9869cd5449f"
+    },
+    {
+      "path": "scripts/run_host_tests.py",
+      "sha256": "5ab5c8f2eacf152f525b8c8295ce89ad9340a618683a0ccfe690cc908f388010"
+    },
+    {
+      "path": "scripts/simulate_display.py",
+      "sha256": "c6363e2174173f0e45b87f9e9acac286d9fc766b57d70df26298baca2c55183f"
+    },
+    {
+      "path": "tests/config/test_fixture_isolation.py",
+      "sha256": "9ef076298a1b40962fd9ac3dfd03e27654f17aceeb74e55840dd7f2b5bf322b8"
+    },
+    {
+      "path": "tests/config/test_generate_city_data.py",
+      "sha256": "8b41df37534c1e64ab9aff68d15515cdddd3ba4dcac008ef96ad59b2b59985d6"
+    },
+    {
+      "path": "tests/config/test_radio_config.py",
+      "sha256": "37c4aa37302bd81219022b947dd0d2652ce4bd4017a3f6e30f359bb6c816801d"
+    },
+    {
+      "path": "tests/config/test_timing_and_protocol.py",
+      "sha256": "51ffb3c4cebac306ead78e12d1e88f52408b157a3e218e9c5424579079e5ed7c"
+    },
+    {
+      "path": "tests/fixtures/cities.json",
+      "sha256": "825a9bc22ac34ec0d90a8387101beac57e081ce6cc88db8531ffa86c55a2bea3"
+    },
+    {
+      "path": "tests/logic/test_main.cpp",
+      "sha256": "7c3e793e23b7743d2ca6b0db1f699ea1fb281d70946db90f5b7f17c5f4bb5407"
+    }
+  ],
+  "blockers": [
+    "B01 正式 8 城表不完整，严格发布校验失败。",
+    "B03 缺 8 份合法离线音频及逐源来源记录。",
+    "B02 缺 16 条真实在线源及逐源实测记录。",
+    "B04 既有完整播放器源码、依赖和构建脚本未接收。",
+    "B05 硬件 IO 未确认；硬件构建必须明确失败，不能采用默认 GPIO。",
+    "B06 本地 Wi-Fi 配置缺失；不影响主机逻辑，但阻止实机联调。",
+    "B07 本机未安装 arduino-cli，未执行 S3 真实编译。",
+    "B08 未生成任何 .bin；不得宣称存在可刷写固件。",
+    "B09 T01-T22 未全部实机实测通过；P0 整体保持未完成。",
+    "B11 S3 真实目标板编译/上传未执行。",
+    "B12 2 小时活动模式/200 次混合操作、独立构建上传回归未在实机执行。"
+  ],
+  "notes": [
+    "主机测试通过不等于 S3 编译通过，也不等于实机通过。",
+    "未生成任何 .bin；release/ 不包含可刷写固件。",
+    "fixture 仅用于主机测试和预览，未进入正式配置。"
+  ]
+}

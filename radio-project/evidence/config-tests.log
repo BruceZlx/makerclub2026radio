@@ -1,0 +1,22 @@
+test_fixture_does_not_leak_into_production_header (test_fixture_isolation.FixtureIsolationTests.test_fixture_does_not_leak_into_production_header) ... ok
+test_fixture_is_explicitly_synthetic (test_fixture_isolation.FixtureIsolationTests.test_fixture_is_explicitly_synthetic) ... ok
+test_formal_config_has_no_cities (test_fixture_isolation.FixtureIsolationTests.test_formal_config_has_no_cities) ... ok
+test_generator_rejects_incomplete_formal_config (test_generate_city_data.GenerateCityDataTests.test_generator_rejects_incomplete_formal_config) ... ok
+test_generator_writes_fixture_header (test_generate_city_data.GenerateCityDataTests.test_generator_writes_fixture_header) ... ok
+test_render_fixture_table (test_generate_city_data.GenerateCityDataTests.test_render_fixture_table) ... ok
+test_config_id_changes_with_city_data (test_radio_config.RadioConfigTests.test_config_id_changes_with_city_data) ... ok
+test_duplicate_display_order_is_rejected (test_radio_config.RadioConfigTests.test_duplicate_display_order_is_rejected) ... ok
+test_duplicate_id_is_rejected (test_radio_config.RadioConfigTests.test_duplicate_id_is_rejected) ... ok
+test_fixed_offset_timezone_is_rejected (test_radio_config.RadioConfigTests.test_fixed_offset_timezone_is_rejected) ... ok
+test_fixture_is_complete_and_valid (test_radio_config.RadioConfigTests.test_fixture_is_complete_and_valid) ... ok
+test_formal_config_is_incomplete (test_radio_config.RadioConfigTests.test_formal_config_is_incomplete) ... ok
+test_invalid_url_is_rejected (test_radio_config.RadioConfigTests.test_invalid_url_is_rejected) ... ok
+test_default_standby_policy_is_after_initial_load (test_timing_and_protocol.TimingAndProtocolConfigTests.test_default_standby_policy_is_after_initial_load) ... ok
+test_formal_city_config_remains_incomplete (test_timing_and_protocol.TimingAndProtocolConfigTests.test_formal_city_config_remains_incomplete) ... ok
+test_protocol_limits_match_plan (test_timing_and_protocol.TimingAndProtocolConfigTests.test_protocol_limits_match_plan) ... ok
+test_timing_constants_match_plan (test_timing_and_protocol.TimingAndProtocolConfigTests.test_timing_constants_match_plan) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.106s
+
+OK

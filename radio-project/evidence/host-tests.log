@@ -1,0 +1,31 @@
+radio-project host logic tests
+compiler: /usr/bin/c++
+command: /usr/bin/c++ -std=c++17 -Wall -Wextra -O2 -g -I/var/folders/5v/3bbt9_j505d89kgcx39py53h0000gn/T/radio-host-tests-4lr1n9b7 -I/Users/bruce/Documents/club/radio-project/firmware/shared -I/Users/bruce/Documents/club/radio-project/firmware/radio_a -I/Users/bruce/Documents/club/radio-project/firmware/display_b /Users/bruce/Documents/club/radio-project/tests/logic/test_main.cpp /Users/bruce/Documents/club/radio-project/firmware/shared/app_controller.cpp /Users/bruce/Documents/club/radio-project/firmware/shared/city_catalog.cpp /Users/bruce/Documents/club/radio-project/firmware/shared/identity.cpp /Users/bruce/Documents/club/radio-project/firmware/shared/input_service.cpp /Users/bruce/Documents/club/radio-project/firmware/shared/map_renderer.cpp /Users/bruce/Documents/club/radio-project/firmware/shared/protocol_v2.cpp /Users/bruce/Documents/club/radio-project/firmware/shared/radio_types.cpp /Users/bruce/Documents/club/radio-project/firmware/shared/source_manager.cpp /Users/bruce/Documents/club/radio-project/firmware/radio_a/audio_adapter.cpp /Users/bruce/Documents/club/radio-project/firmware/radio_a/audio_backend_esp32.cpp /Users/bruce/Documents/club/radio-project/firmware/radio_a/radio_link.cpp /Users/bruce/Documents/club/radio-project/firmware/radio_a/sd_audio_catalog.cpp /Users/bruce/Documents/club/radio-project/firmware/radio_a/wifi_service.cpp /Users/bruce/Documents/club/radio-project/firmware/display_b/display_controller.cpp /Users/bruce/Documents/club/radio-project/firmware/display_b/display_link.cpp -o /var/folders/5v/3bbt9_j505d89kgcx39py53h0000gn/T/radio-host-tests-4lr1n9b7/radio-host-tests
+compile_exit: 0
+test_exit: 0
+radio-project host logic tests
+- encoder
+- encoder calibration
+- identity
+- city catalog
+- source manager
+- protocol parser
+- radio link
+- display controller
+- display link
+- map renderer
+- app controller basic
+- city wrap
+- ready orders
+- display degraded and duplicate done
+- board reboot recovery
+- timeouts
+- standby
+- standby wrap
+- priority and stale events
+- audio adapter
+- wifi and sd
+- clock wrap
+- simulated two-hour active run
+- long standby wake
+665 checks, 0 failures

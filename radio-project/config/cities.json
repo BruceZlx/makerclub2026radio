@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "complete": false,
+  "status": "awaiting-content-team",
+  "reason": "完整8城表、16条真实台址与8份离线音频尚未交付；正式配置故意保持不完整，禁止猜测城市名单或地址。",
+  "origin": {
+    "code": "SHA",
+    "name": "上海",
+    "longitude": 121.4737,
+    "latitude": 31.2304
+  },
+  "cities": []
+}
