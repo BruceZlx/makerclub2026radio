@@ -9,6 +9,7 @@
 | `acceptance-report.json` | C5 严格发布审核报告（当前 blocked） |
 | `strict-audit.log` | C5 严格审核原始输出（退出码 2，预期阻塞） |
 | `build-gate.log` | 板 A/板 B 构建门 dry-run 原始输出（退出码 2，预期阻塞） |
+| `hardware-io-check.log` | 2026-11-25 双板接线检查通过、完整 IO 门退出 2 的原始结果；含头文件主机语法检查 |
 | `document-render/` | Word 计划渲染检查用 PDF/页面图 |
 | `source-records.json` | 待补：16 条真实源逐源实测记录（当前不存在） |
 

@@ -1,7 +1,7 @@
 # 短波穿越电台 · 双 ESP32-S3 软件
 
 版本：v1.2 实施记录  
-日期：2026-11-24  
+日期：2026-11-25
 基线提交：`34dc4e022780cb75b48db99211a10f1e8ae60a66`
 
 ## 当前状态
@@ -14,7 +14,7 @@
 | 实机验收 | T01–T22 全部 `BLOCKED` |
 | 严格发布 | 失败；P0 整体未完成 |
 
-本目录只包含逻辑、接口、配置、测试、预览和文档。没有真实播放器、正式 8 城表/16 个真实源、8 份离线音频、具体板屏与 IO，也没有任何 `.bin`。不得把主机通过、预览生成或打包成功写成全部 P0 完成。
+本目录只包含逻辑、接口、配置、测试、预览和文档。没有真实播放器、正式 8 城表/16 个真实源、8 份离线音频、具体模组与完整屏幕参数，也没有任何 `.bin`。2026-11-25 已接收并录入两板外设 IO；两板 UART 及板 B 存储器/启动电平核对仍缺失，见 `docs/hardware-io-review.md`。不得把主机通过、预览生成或打包成功写成全部 P0 完成。
 
 ## 目录
 
@@ -22,7 +22,7 @@
 firmware/shared/       协议、类型、身份、输入、地图、控制器、音源管理
 firmware/radio_a/      AudioAdapter、RadioLink、Wi-Fi、SD 目录
 firmware/display_b/    DisplayController、DisplayLink
-config/                cities.json、环境锁定、IO/凭据模板
+config/                cities.json、环境锁定、双板 IO 配置与凭据模板
 assets/                音频/字体/地图资源目录（当前为空）
 scripts/               生成、校验、主机测试、预览、文档检查、发布审核
 tests/logic/           Arduino 无关 C++ 测试
@@ -55,10 +55,13 @@ python3 -B scripts/audit_delivery.py --strict \
 - `config/cities.json` 是唯一编辑源；正式配置当前故意 `complete: false`。
 - `python3 -B scripts/generate_city_data.py` 在正式配置完整后才生成固件城市表。
 - `python3 -B scripts/build_firmware.py --board a --dry-run` 会在缺配置/IO/CLI/sketch 时明确失败。
-- 禁止默认 GPIO；禁止沿用 WROVER 引脚限制；禁止在未确认 S3 模组时填写 Flash/PSRAM/分区。
+- `python3 -B scripts/check_hardware.py --board a`（或 `b`）检查已收到的 IO；加 `--require-complete` 检查硬件就绪门，当前应失败。
+- 默认分别读取 `hardware_pins_a.h` / `hardware_pins_b.h`，存在对应 `.local.h` 时优先使用该板完整本地副本；不再自动读取旧的 `hardware_pins.local.h`。
+- 禁止猜测缺失 GPIO；禁止沿用 WROVER 引脚限制；禁止在未确认 S3 模组时填写 Flash/PSRAM/分区。
 
 ## 文档
 
+- `docs/hardware-io-review.md`：2026-11-25 接线清单、审阅结论与校验方法
 - `docs/materials.md`：M0 材料与里程碑状态
 - `docs/missing-inputs.md`：缺失输入与解除条件
 - `docs/audio-integration.md`：音频所有权、就绪与测量
@@ -71,4 +74,4 @@ python3 -B scripts/audit_delivery.py --strict \
 
 ## 回退
 
-基线提交 `34dc4e0` 保存了原 v1.1 计划和诊断 `demo`。当前未修改 demo，未创建分支，未提交，未推送。
+基线提交 `34dc4e0` 保存了原 v1.1 计划和诊断 `demo`。demo 保持原样。用户已于 2026-11-25 要求本轮改动完成后提交并同步 GitHub；实际版本与同步状态以 `git log`、`git status` 及远端 HEAD 为准。

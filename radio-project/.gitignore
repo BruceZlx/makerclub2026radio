@@ -1,5 +1,7 @@
 # Local hardware and credentials: never commit.
 config/hardware_pins.local.h
+config/hardware_pins_a.local.h
+config/hardware_pins_b.local.h
 config/secrets.local.h
 
 # Build outputs and IDE state.
@@ -11,3 +13,5 @@ build/
 
 # OS noise.
 .DS_Store
+__pycache__/
+*.pyc

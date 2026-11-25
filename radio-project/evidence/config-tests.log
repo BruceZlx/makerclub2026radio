@@ -4,6 +4,23 @@ test_formal_config_has_no_cities (test_fixture_isolation.FixtureIsolationTests.t
 test_generator_rejects_incomplete_formal_config (test_generate_city_data.GenerateCityDataTests.test_generator_rejects_incomplete_formal_config) ... ok
 test_generator_writes_fixture_header (test_generate_city_data.GenerateCityDataTests.test_generator_writes_fixture_header) ... ok
 test_render_fixture_table (test_generate_city_data.GenerateCityDataTests.test_render_fixture_table) ... ok
+test_audit_rejects_commented_enable_flags (test_hardware_config.HardwareConfigTests.test_audit_rejects_commented_enable_flags) ... ok
+test_both_boards_require_all_sd_signals (test_hardware_config.HardwareConfigTests.test_both_boards_require_all_sd_signals) ... ok
+test_build_rejects_incomplete_pins_before_compiler (test_hardware_config.HardwareConfigTests.test_build_rejects_incomplete_pins_before_compiler) ... ok
+test_build_uses_validated_header_and_board_flag (test_hardware_config.HardwareConfigTests.test_build_uses_validated_header_and_board_flag) ... ok
+test_comments_do_not_enable_gate_or_supply_pins (test_hardware_config.HardwareConfigTests.test_comments_do_not_enable_gate_or_supply_pins) ... ok
+test_complete_boards_are_validated_independently (test_hardware_config.HardwareConfigTests.test_complete_boards_are_validated_independently) ... ok
+test_duplicate_gpio_and_uart_usb_boot_conflicts (test_hardware_config.HardwareConfigTests.test_duplicate_gpio_and_uart_usb_boot_conflicts) ... ok
+test_gpio45_requires_reset_level_verification (test_hardware_config.HardwareConfigTests.test_gpio45_requires_reset_level_verification) ... ok
+test_local_selection_is_board_specific (test_hardware_config.HardwareConfigTests.test_local_selection_is_board_specific) ... ok
+test_missing_header_fails (test_hardware_config.HardwareConfigTests.test_missing_header_fails) ... ok
+test_nonexistent_and_flash_bus_gpio (test_hardware_config.HardwareConfigTests.test_nonexistent_and_flash_bus_gpio) ... ok
+test_octal_memory_conflict_cannot_be_overridden_by_gate (test_hardware_config.HardwareConfigTests.test_octal_memory_conflict_cannot_be_overridden_by_gate) ... ok
+test_received_headers_are_incomplete_without_invented_uart (test_hardware_config.HardwareConfigTests.test_received_headers_are_incomplete_without_invented_uart) ... ok
+test_received_wiring_matches_user_list (test_hardware_config.HardwareConfigTests.test_received_wiring_matches_user_list) ... ok
+test_rejects_preprocessor_ambiguity (test_hardware_config.HardwareConfigTests.test_rejects_preprocessor_ambiguity) ... ok
+test_usb_and_boot_have_fixed_pin_numbers (test_hardware_config.HardwareConfigTests.test_usb_and_boot_have_fixed_pin_numbers) ... ok
+test_wrong_board_and_typo_are_rejected (test_hardware_config.HardwareConfigTests.test_wrong_board_and_typo_are_rejected) ... ok
 test_config_id_changes_with_city_data (test_radio_config.RadioConfigTests.test_config_id_changes_with_city_data) ... ok
 test_duplicate_display_order_is_rejected (test_radio_config.RadioConfigTests.test_duplicate_display_order_is_rejected) ... ok
 test_duplicate_id_is_rejected (test_radio_config.RadioConfigTests.test_duplicate_id_is_rejected) ... ok
@@ -17,6 +34,6 @@ test_protocol_limits_match_plan (test_timing_and_protocol.TimingAndProtocolConfi
 test_timing_constants_match_plan (test_timing_and_protocol.TimingAndProtocolConfigTests.test_timing_constants_match_plan) ... ok
 
 ----------------------------------------------------------------------
-Ran 17 tests in 0.106s
+Ran 34 tests in 0.131s
 
 OK

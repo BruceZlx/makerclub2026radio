@@ -1,6 +1,6 @@
 # 环境锁定（v1.2）
 
-核对日期：2026-11-24  
+核对日期：2026-11-25（本轮更新 IO 接收状态；工具链版本沿用目标记录）
 基线提交：`34dc4e022780cb75b48db99211a10f1e8ae60a66`
 
 | 项目 | 目标/记录 | 实际状态 |
@@ -14,8 +14,9 @@
 | PSRAM | QSPI/OPI 未确认 | 禁止默认 |
 | 分区表 | 未确认 | 禁止默认 |
 | USB CDC / USB OTG | 未确认 | 禁止默认 |
-| 板 A 音频 | MAX98357 I2S | 模块已确认，IO 未填 |
-| 板 B 屏幕 | 未确认 | 型号、扫描、库均未冻结 |
+| 板 A 音频 | MAX98357 I2S | 模块已确认，I2S GPIO4/5/6 已接收；完整模组仍待核对 |
+| 板 B 屏幕 | HUB75 接口 | 信号 IO 已接收；型号、扫描、库均未冻结，GPIO35/36/37 与 GPIO45 待核对 |
+| 两板 IO | 外设清单已接收 | `hardware_pins_a.h` / `hardware_pins_b.h`；UART TX/RX 缺失，完整 IO 门未通过 |
 | Arduino CLI | 未安装 | `shutil.which("arduino-cli")` 无结果 |
 | 依赖校验值 | 无文件可算 | 收到副本后记录 `library.properties` 与压缩包 SHA256 |
 
@@ -30,4 +31,4 @@
 2026-11-24  tests/fixtures/cities.json SHA256: 825a9bc22ac34ec0d90a8387101beac57e081ce6cc88db8531ffa86c55a2bea3
 ```
 
-本文件不把交接文档中的 ESP32-WROVER、GPIO 或分区参数当作 S3 默认值。真实模组、Flash/PSRAM、分区和屏幕确认后，必须重新生成本文件并保存构建日志。IO 未填写时 `scripts/build_firmware.py` 必须明确失败。
+本文件不把交接文档中的 ESP32-WROVER、GPIO 或分区参数当作 S3 默认值。真实模组、Flash/PSRAM、分区和屏幕确认后，必须重新生成本文件并保存构建日志。IO 不完整或模组/电气核对未完成时 `scripts/build_firmware.py` 必须明确失败；完整评审见 `docs/hardware-io-review.md`。

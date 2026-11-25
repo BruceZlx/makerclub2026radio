@@ -1,5 +1,7 @@
 # 交付报告
 
+2026-11-25 增补：外设 IO 已录入两份共享头文件，新增硬件配置校验、修正板 B TF 卡必填项并统一构建/发布门。当前 Python 共 34 项回归；完整接线与本轮边界见 `docs/hardware-io-review.md`。下列 v1.2 测试数量及 Git 状态为 2026-11-24 历史记录，当前以 `evidence/` 和 Git 状态为准。
+
 版本：v1.2 实施记录  
 日期：2026-11-24  
 基线提交：`34dc4e022780cb75b48db99211a10f1e8ae60a66`
@@ -37,7 +39,7 @@
 
 ## 4 阻塞项
 
-见 `evidence/acceptance-report.json` 的 `blockers` 与 `missing_inputs`。主要包括：完整播放器未接收、正式 8 城表/16 源缺失、8 份离线音频缺失、S3 模组/Flash/PSRAM/分区/USB 未确认、屏幕与显示库未确认、全部 IO 未确认、`arduino-cli` 与依赖未安装、T01–T22 未实机执行、无 `.bin`。
+见 `evidence/acceptance-report.json` 的 `blockers` 与 `missing_inputs`。主要包括：完整播放器未接收、正式 8 城表/16 源缺失、8 份离线音频缺失、S3 模组/Flash/PSRAM/分区/USB 未确认、屏幕与显示库未确认、外设 IO 已接收但 UART 与模组/电气核对未完成、`arduino-cli` 与依赖未安装、T01–T22 未实机执行、无 `.bin`。
 
 ## 5 已知限制
 
@@ -54,6 +56,6 @@
 
 1. 接收完整播放器源码/依赖并记录 SHA256，完成 M0 冒烟。
 2. 接收完整 8 城表/16 源/8 份音频，替换巴黎与开罗候选源并逐源复验。
-3. 确认 S3 模组、Flash/PSRAM、分区、USB、屏幕与全部 IO，填写 `hardware_pins.local.h`。
+3. 核对已接收的双板 IO，补齐 UART，确认 S3 模组/Flash/PSRAM、分区、USB、屏幕及电气条件，再启用对应的 `hardware_pins_a.h` / `hardware_pins_b.h`（或完整 `.local.h`）。
 4. 安装锁定版本 Arduino 工具链，完成 S3 编译、上传与 PSRAM/MAX98357/SD/网络/双板显示验证。
 5. 执行 T01–T22、2 小时/200 次与独立构建上传回归，补齐证据后再运行严格审核。

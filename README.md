@@ -4,7 +4,7 @@
 
 **当前状态：主机可验证的逻辑、工具和模拟预览已交付；真实播放器接入、S3 固件构建、双板实机联调及整体验收仍为 `BLOCKED`。目前没有可直接上传的 Arduino sketch，也没有可刷写的 `.bin`。**
 
-进度快照日期：**2026-11-24**。本文依据当前源码、测试日志和交付报告编写，对应已提交的实现快照 `45dc1b0`。开发计划文档为 **v1.2**；执行工作流计划为 **v2**，两者独立编号。工作流 v2 只补充了一份固件说明文件的修改范围，未变更功能或验收标准。
+进度快照日期：**2026-11-25**。逻辑实现基于 `45dc1b0`；本轮新增双板 IO 配置、冲突校验及接入评审，详见 [IO 审阅记录](radio-project/docs/hardware-io-review.md)。开发计划文档为 **v1.2**；执行工作流计划为 **v2**，两者独立编号。工作流 v2 只补充了一份固件说明文件的修改范围，未变更功能或验收标准。
 
 快速导航：[当前进度](#当前进度) · [已有实现](#已有实现) · [主机验证与预览](#主机验证与预览) · [配置与硬件构建](#配置与硬件构建) · [阻塞项与接续顺序](#阻塞项与接续顺序) · [已知限制与待审查事项](#已知限制与待审查事项) · [文档与证据索引](#文档与证据索引)
 
@@ -17,7 +17,7 @@
 | 板 A：ESP32-S3 | 旋钮输入、城市与状态决策、Wi-Fi、音频来源、SD、出声控制和待机 | 逻辑模块、接口及故障模拟已有；真实音频与硬件运行待集成 |
 | 板 B：ESP32-S3 | 地图、城市光点、飞行弧线、待机动画、来源和错误状态 | 逻辑渲染与电脑预览已有；实屏驱动待确定 |
 | 两板链路 | 通过状态快照同步当前请求，确认动画完成，处理重发与重启恢复 | v2 编解码及模拟链路已测试；实际 UART 未联调 |
-| 音频输出 | 解码得到 PCM，经 I2S 送入 MAX98357 模块 | 输出路线已确定，实际库接口、模组配置和 IO 尚待验证 |
+| 音频输出 | 解码得到 PCM，经 I2S 送入 MAX98357 模块 | 输出路线已确定，外设 IO 已录入；实际库接口、模组与电气连接尚待验证 |
 
 用户选城后，板 A 的音频准备与板 B 的动画并行开始。只有当前请求的音频就绪，且动画完成或已明确进入显示失联降级，才允许出声。旋转始终具有最高事件处理优先级，并使旧请求失效。
 
@@ -34,7 +34,7 @@
 | 维度 | 当前结论 | 依据与边界 |
 | --- | --- | --- |
 | 代码实现 | **部分完成** | 输入、状态机、切源策略、协议、显示逻辑、主机工具已实现；真实播放后端、实屏驱动和 Arduino 入口尚未完成 |
-| 主机验证 | **C1–C4 通过** | C++ 665 项检查、Python 17 项测试、预览自测、文档 31 项检查通过 |
+| 主机验证 | **C1–C4 通过** | C++ 665 项检查、Python 34 项测试、预览自测、文档 31 项检查通过 |
 | ESP32-S3 构建 | **未执行** | 缺实际播放器、完整板型参数、硬件配置和锁定工具链；无 `.bin` |
 | 实机验收 | **未执行** | T01–T22 全部标记 `BLOCKED`，无真实音频、SD、UART、屏幕及稳定性通过证据 |
 | 严格发布审核 | **未通过** | C5 退出码为 2，`release_ready` 为 `false`，P0 整体未完成 |
@@ -164,7 +164,7 @@ python3 -B -m unittest discover \
   -s tests/config -p 'test_*.py' -v
 ```
 
-当前结果为 `17 tests, OK`，已有记录见 [config-tests.log](radio-project/evidence/config-tests.log)。单独运行上述 unittest 命令只打印结果，不自动更新该历史日志。
+当前结果为 `34 tests, OK`（含新增 17 项硬件配置回归），已有记录见 [config-tests.log](radio-project/evidence/config-tests.log)。单独运行上述 unittest 命令只打印结果，不自动更新该历史日志。
 
 ### C3：地图和待机预览
 
@@ -230,9 +230,10 @@ python3 -B scripts/generate_city_data.py \
 
 ### 本地 IO、网络与资源
 
-- [hardware_pins.example.h](radio-project/config/hardware_pins.example.h) 只列配置项名称，实际 GPIO 继续留空；硬件确认后建立 `radio-project/config/hardware_pins.local.h`，补齐所需宏和对应板的启用标记。
+- 用户提供的外设 IO 已分别保存于 [板 A 配置](radio-project/config/hardware_pins_a.h) 和 [板 B 配置](radio-project/config/hardware_pins_b.h)，包含两板各自的 TF 卡、USB 和 BOOT；EN 为专用复位端。UART TX/RX 尚未提供，配置启用标记保持 0。
+- [配置说明模板](radio-project/config/hardware_pins.example.h) 说明单板文件格式。需要本机试接时分别复制为 `hardware_pins_a.local.h` / `hardware_pins_b.local.h`；不再自动读取旧的单文件 `hardware_pins.local.h`。板 B 的 GPIO35/36/37 存储器占用与 GPIO45 启动电平需结合实际模组核对，详见 [IO 审阅](radio-project/docs/hardware-io-review.md)。
 - [secrets.example.h](radio-project/config/secrets.example.h) 只列 Wi-Fi 配置模板；板 A 的真实配置放入 `radio-project/config/secrets.local.h`。
-- 两个 `.local.h` 文件已被子工程 `.gitignore` 排除。凭据只保存在开发机，不写入共享源码、协议报文或测试日志。
+- 单板 IO 和 Wi-Fi 的 `.local.h` 文件已被子工程 `.gitignore` 排除。凭据只保存在开发机，不写入共享源码、协议报文或测试日志。
 - 离线资源放入 [assets/audio/](radio-project/assets/audio/)，按城市代码对应 SD 路径，并补齐来源和资源清单。计划初值为 MP3、44.1 kHz、128 kbps；当前没有实际 MP3 文件。
 - 字体、屏幕与地图资源按 [显示接入说明](radio-project/docs/display-integration.md) 接收；当前没有实屏字库或已确认的刷新库。
 
@@ -247,7 +248,7 @@ python3 -B scripts/build_firmware.py --board a --dry-run
 python3 -B scripts/build_firmware.py --board b --dry-run
 ```
 
-当前两板预期都退出 2。脚本会列出正式配置、IO 宏、板 A Wi-Fi、Arduino CLI 以及 sketch 入口的缺项；即使使用 `--dry-run`，也需要通过这些前置检查。
+当前两板预期都退出 2。脚本会列出正式配置、UART 与 IO/模组核对、板 A Wi-Fi、Arduino CLI 以及 sketch 入口的缺项；即使使用 `--dry-run`，也需要通过这些前置检查。
 
 `radio_a.ino` / `display_b.ino` 尚未集成，真实后端与实屏驱动尚未完成；只安装工具链或复制配置模板还不能生成固件。资料和代码接入齐备后，再按 [构建与上传说明](radio-project/docs/build-and-upload.md) 提供完整 FQBN、执行构建、上传并留存产物与 SHA256。
 
@@ -285,6 +286,7 @@ python3 -B scripts/build_firmware.py --board b --dry-run
 | 音频所有权、PCM、代次与阻塞测量 | [音频接入](radio-project/docs/audio-integration.md)、[播放器接收状态](radio-project/docs/player-integration-status.md) |
 | 报文、握手、重发与 v1 迁移 | [协议 v2](radio-project/docs/protocol-v2.md) |
 | 地图逻辑、预览及实屏前提 | [显示接入](radio-project/docs/display-integration.md) |
+| 已接收的双板接线、冲突评审与 IO 校验 | [IO 审阅记录](radio-project/docs/hardware-io-review.md) |
 | 工具链、构建前置检查和上传 | [构建与上传](radio-project/docs/build-and-upload.md) |
 | T01–T22 操作与结果表 | [硬件验收矩阵](radio-project/docs/hardware-test-matrix.md) |
 | 接手顺序及交接模板 | [继续开发](radio-project/docs/continued-development.md) |

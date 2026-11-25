@@ -1,7 +1,7 @@
 # 构建与上传说明
 
 版本：v1.2 实施记录  
-日期：2026-11-24
+日期：2026-11-25（IO 配置及构建门更新）
 
 ## 1 当前状态
 
@@ -18,12 +18,18 @@ python3 -B scripts/build_firmware.py --board b --dry-run
 脚本在调用编译器前检查：
 
 1. `config/cities.json` 必须完整 8 城并通过严格校验；
-2. `config/hardware_pins.local.h` 必须存在并定义该板全部 IO 宏；
+2. 分别校验板 A 的 `config/hardware_pins_a.h` 与板 B 的 `config/hardware_pins_b.h`（有该板完整 `.local.h` 时优先）；必须补齐 UART、各自 SD 与全部外设宏，并完成配置标记及模组/电气核对；
 3. 板 A 必须存在 `config/secrets.local.h`；
 4. `arduino-cli` 必须可用；
 5. 对应 Arduino sketch 入口必须已集成。
 
 任一条件不满足即退出码 2，并明确指出缺失项；不提供默认 GPIO，不静默回退到 WROVER 引脚限制。
+
+外设接线已按用户清单录入，详见 [IO 审阅记录](hardware-io-review.md)。目前两板配置标记都为 0，UART 未提供，板 B 的 GPIO35/36/37 与 GPIO45 仍需核对，因此仍应失败。
+
+单独检查收到的接线可运行 `python3 -B scripts/check_hardware.py --board a`（或 `b`）；加 `--require-complete` 检查完整 IO 门。构建与发布审核调用同一校验器，覆盖同板重脚、USB/BOOT 保留占用、无效 GPIO、Flash 总线占用及八线存储器冲突。
+
+自定义完整配置可用 `--pins <文件>`；对应审核用 `--pins-a <文件>` / `--pins-b <文件>`。配置文件仅支持十进制整数定义与注释。构建会通过 `compiler.cpp.extra_flags` 的 `-include` 强制包含实际校验的头文件，并注入 `RADIO_BOARD_A=1` 或 `RADIO_BOARD_B=1`；后续 Arduino 入口直接使用 `RADIO_PIN_*` 宏，不再单独硬编码接线。旧的共用 `hardware_pins.local.h` 不再自动选用，应拆成两板完整配置。
 
 ## 3 环境锁定
 

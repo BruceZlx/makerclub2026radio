@@ -2,7 +2,7 @@
   "schema_version": 1,
   "release_status": "blocked",
   "release_ready": false,
-  "generated_at": "2026-11-24T14:10:20.714918+00:00",
+  "generated_at": "2026-11-25T11:14:08.797056+00:00",
   "baseline_commit": "34dc4e022780cb75b48db99211a10f1e8ae60a66",
   "binaries": [],
   "facts": {
@@ -23,7 +23,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "0158918c01a347ff4c4aa943c7fc56700086ed6fa1a74248ff9d58ca6759ec8e"
+      "sha256": "b3745d1760b2ca4d95fe40ba5731a1fc020fe9ddc15bc61327c67aec70fc3a6a"
     },
     {
       "path": "config/cities.json",
@@ -31,11 +31,19 @@
     },
     {
       "path": "config/environment.lock.md",
-      "sha256": "c287b4d2c70097b6e0b74762964287f1ff1cb005b51a58546f6df291113c7146"
+      "sha256": "915b9434ead35a2ce0a325b371ccd0ccd7f9952ffe283f1958ffb28cd49f5c06"
     },
     {
       "path": "config/hardware_pins.example.h",
-      "sha256": "c7f720ea5a0f70c1aecd747b5f053a422f4af540700419e8df78540d38544630"
+      "sha256": "b89632e50b5cd879b65d996ab4906bc19061b402daa061f08abf314eff21c98b"
+    },
+    {
+      "path": "config/hardware_pins_a.h",
+      "sha256": "541572915d48841fa52dc139bca2165d54c8a6ba00393710b830b80052c86b3f"
+    },
+    {
+      "path": "config/hardware_pins_b.h",
+      "sha256": "e40de0165a184ed1d540849ab30546393e566325db4458b614d2ef48f96d1763"
     },
     {
       "path": "docs/audio-integration.md",
@@ -43,19 +51,23 @@
     },
     {
       "path": "docs/build-and-upload.md",
-      "sha256": "77d87a5c7d2c910a5d66210fa840095f7d874b4c31d9c8dd236cf957afc198d2"
+      "sha256": "4259ce5436d192db21e8f5d51e1697a35e0e2e83225c05cf1488a1e0d6fe7b6d"
     },
     {
       "path": "docs/continued-development.md",
-      "sha256": "0f23ce9e89909217dfec7284e67a586fe97a94325c9d91fdeaa32999557a1b1e"
+      "sha256": "e85b838be24c9c558fb40b014125668a71d8c8841eeebbd9be6426e4a61d44ff"
     },
     {
       "path": "docs/delivery-report.md",
-      "sha256": "8e50a966799abedf42ef89a6237dfb82feeaa41375ba44ef9b6ecae68b2aaea4"
+      "sha256": "c587b25b060a74045f219446926aa962eafc1195b0b2464b6fbd309399995dc6"
     },
     {
       "path": "docs/display-integration.md",
-      "sha256": "2011a783e0abfedb7ee9c6de228dec1545efc481f4e37aea3cdef12adda950ab"
+      "sha256": "0583dba0ad65dfba51df2ebfe5cf1eda73ba11edaffea16e3b192b8b0efa640d"
+    },
+    {
+      "path": "docs/hardware-io-review.md",
+      "sha256": "aa861ce41f230b0f5049204bc4c01bd149022719a8f9d604becd81604c31795e"
     },
     {
       "path": "docs/hardware-test-matrix.md",
@@ -63,11 +75,11 @@
     },
     {
       "path": "docs/materials.md",
-      "sha256": "02dbbd6986996fbf048cc02bcc331c44bd2f629dfbe9f9c65be02ff18a069844"
+      "sha256": "74df7ec3dd720bbd6d98e2c20693d8e274ca264237691a66bfde503557e02688"
     },
     {
       "path": "docs/missing-inputs.md",
-      "sha256": "c67d91e22084cea7b8a30ca10c247269f90690c19572f7f563929862e71e2672"
+      "sha256": "17386f8bd088abb18d4446b1aaf20bbe82f75c7fa7755913f03818b7e3633691"
     },
     {
       "path": "docs/player-integration-status.md",
@@ -79,7 +91,7 @@
     },
     {
       "path": "evidence/README.md",
-      "sha256": "efc68aeecc1b70a8bae4c82973888859178edd9bc8958d47756d6e467ff94877"
+      "sha256": "a7d37faa1d801be9001bca448ddc12b56ad5ce7d74039e66a3f5957ea6c9d25a"
     },
     {
       "path": "firmware/display_b/display_controller.cpp",
@@ -183,11 +195,11 @@
     },
     {
       "path": "scripts/audit_delivery.py",
-      "sha256": "93d16f1bbe3feb55079374149e69f7b5342a58c95b84af3c579d29290a31704e"
+      "sha256": "a8f55b97bfa6dae33aaa37e2208d662c6f7fe61993f7bde2c730d52cf35362c2"
     },
     {
       "path": "scripts/build_firmware.py",
-      "sha256": "2e773e54dd997fc80e573dabebb7067b913d96df5caa963fb38caf4f0e20f520"
+      "sha256": "1ed3cca77bd4deb14f56b117630e243265f4c4b3b189d917937e595c1600d451"
     },
     {
       "path": "scripts/check_config.py",
@@ -198,8 +210,16 @@
       "sha256": "49acdc56ec18a127655790efc62b709dca9d270488989e4590a195521710738b"
     },
     {
+      "path": "scripts/check_hardware.py",
+      "sha256": "5b77fb1eaacda5d1f0d3d66f596c8b84a7d002964d51f49252f19bb0a9c24374"
+    },
+    {
       "path": "scripts/generate_city_data.py",
       "sha256": "4dcde174235cd191ccb65088a1fb65a3a5b9f36938bd27bcd12a5343fae34b08"
+    },
+    {
+      "path": "scripts/hardware_config.py",
+      "sha256": "125a3449824071ab564f4cd3d8d53566ac272c1dfa0b40fd2f3c0d1f807cea26"
     },
     {
       "path": "scripts/radio_config.py",
@@ -211,7 +231,7 @@
     },
     {
       "path": "scripts/simulate_display.py",
-      "sha256": "c6363e2174173f0e45b87f9e9acac286d9fc766b57d70df26298baca2c55183f"
+      "sha256": "7728d1a3562a0755c1558fc238133b53ce83913fb5b73b25db48c9dfb7ee62aa"
     },
     {
       "path": "tests/config/test_fixture_isolation.py",
@@ -220,6 +240,10 @@
     {
       "path": "tests/config/test_generate_city_data.py",
       "sha256": "8b41df37534c1e64ab9aff68d15515cdddd3ba4dcac008ef96ad59b2b59985d6"
+    },
+    {
+      "path": "tests/config/test_hardware_config.py",
+      "sha256": "d3fd35c18c7191637c2947b5cdd3dacee87b081ccbfb626875bc5230701596d2"
     },
     {
       "path": "tests/config/test_radio_config.py",
@@ -243,7 +267,7 @@
     "B03 缺 8 份合法离线音频及逐源来源记录。",
     "B02 缺 16 条真实在线源及逐源实测记录。",
     "B04 既有完整播放器源码、依赖和构建脚本未接收。",
-    "B05 硬件 IO 未确认；硬件构建必须明确失败，不能采用默认 GPIO。",
+    "B05 外设 IO 清单已接收；仍缺两板 UART 与模组/存储器、GPIO45 电气核对，或配置未通过校验。",
     "B06 本地 Wi-Fi 配置缺失；不影响主机逻辑，但阻止实机联调。",
     "B07 本机未安装 arduino-cli，未执行 S3 真实编译。",
     "B08 未生成任何 .bin；不得宣称存在可刷写固件。",

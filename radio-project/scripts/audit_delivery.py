@@ -21,6 +21,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from radio_config import load_and_validate  # noqa: E402
+from hardware_config import load_pins, pins_path  # noqa: E402
 
 BASELINE_COMMIT = "34dc4e022780cb75b48db99211a10f1e8ae60a66"
 REQUIRED_DOCS = [
@@ -34,6 +35,7 @@ REQUIRED_DOCS = [
     "docs/build-and-upload.md",
     "docs/delivery-report.md",
     "docs/continued-development.md",
+    "docs/hardware-io-review.md",
 ]
 REQUIRED_CODE = [
     "firmware/shared/app_controller.cpp",
@@ -108,6 +110,8 @@ def parse_t_matrix(path: Path) -> list[dict[str, str]]:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--strict", action="store_true")
+    parser.add_argument("--pins-a", type=Path, help="板 A 完整 IO 头文件；默认优先使用该板 .local.h")
+    parser.add_argument("--pins-b", type=Path, help="板 B 完整 IO 头文件；默认优先使用该板 .local.h")
     parser.add_argument(
         "--output",
         default=str(ROOT / "evidence" / "acceptance-report.json"),
@@ -230,22 +234,25 @@ def main() -> int:
         blockers.append("B04 既有完整播放器源码、依赖和构建脚本未接收。")
         missing_inputs.append("partner 既有完整播放器工程、ESP32-audioI2S 4.0.1 副本与校验值。")
 
-    pins_path = ROOT / "config" / "hardware_pins.local.h"
-    pins_text = read_text(pins_path)
-    pins_ok = "RADIO_HARDWARE_CONFIGURED 1" in pins_text and (
-        "RADIO_DISPLAY_CONFIGURED 1" in pins_text
-    )
+    pin_checks = {}
+    for board in ("a", "b"):
+        selected = getattr(args, f"pins_{board}") or pins_path(board, ROOT)
+        _, errors = load_pins(board, selected)
+        pin_checks[board] = {"path": str(selected), "passed": not errors, "errors": errors,
+                             "sha256": sha256(selected) if selected.is_file() else None}
+    pins_ok = all(check["passed"] for check in pin_checks.values())
     add_check(
         checks,
         "A1-io",
-        "真实 IO 已填写且无默认 GPIO",
+        "两板 IO 完整且通过冲突与模组校验",
         pins_ok,
-        "config/hardware_pins.local.h",
-        "未填写" if not pins_path.is_file() else "配置不完整",
+        "; ".join(check["path"] for check in pin_checks.values()),
+        "; ".join(f"板 {board.upper()}: {error}" for board, check in pin_checks.items() for error in check["errors"])
+        or "两板 IO 校验通过；不代表已完成实机验证",
     )
     if not pins_ok:
-        blockers.append("B05 硬件 IO 未确认；硬件构建必须明确失败，不能采用默认 GPIO。")
-        missing_inputs.append("板 A/板 B 实际模组、Flash/PSRAM、分区、屏幕与全部 IO 分配。")
+        blockers.append("B05 外设 IO 清单已接收；仍缺两板 UART 与模组/存储器、GPIO45 电气核对，或配置未通过校验。")
+        missing_inputs.append("两板 UART TX/RX；实际模组、Flash/PSRAM、分区与屏幕；板 B GPIO35/36/37 占用及 GPIO45 启动电平核对。")
 
     secrets_ok = (ROOT / "config" / "secrets.local.h").is_file()
     add_check(
@@ -405,6 +412,8 @@ def main() -> int:
         "config/cities.json",
         "config/environment.lock.md",
         "config/hardware_pins.example.h",
+        "config/hardware_pins_a.h",
+        "config/hardware_pins_b.h",
         "docs/audio-integration.md",
         "docs/build-and-upload.md",
         "docs/continued-development.md",
@@ -412,12 +421,15 @@ def main() -> int:
         "docs/display-integration.md",
         "docs/hardware-test-matrix.md",
         "docs/materials.md",
+        "docs/hardware-io-review.md",
         "docs/missing-inputs.md",
         "docs/protocol-v2.md",
         "docs/player-integration-status.md",
         "evidence/README.md",
         "release/README.md",
         "scripts/build_firmware.py",
+        "scripts/hardware_config.py",
+        "scripts/check_hardware.py",
         "scripts/check_config.py",
         "scripts/generate_city_data.py",
         "scripts/radio_config.py",
@@ -426,6 +438,7 @@ def main() -> int:
         "scripts/check_documents.py",
         "scripts/audit_delivery.py",
         "tests/config/test_fixture_isolation.py",
+        "tests/config/test_hardware_config.py",
         "tests/config/test_generate_city_data.py",
         "tests/config/test_radio_config.py",
         "tests/config/test_timing_and_protocol.py",
@@ -462,6 +475,7 @@ def main() -> int:
             "blockers": len(blockers),
         },
         "checks": checks,
+        "hardware_configuration": pin_checks,
         "blockers": blockers,
         "missing_inputs": missing_inputs,
         "t01_t22": t_rows,

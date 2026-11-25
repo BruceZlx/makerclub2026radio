@@ -328,7 +328,7 @@ def build_html(config: dict) -> str:
   <div class="meta">config_id={config_id(config)} · fixture=true · 8 synthetic cities</div>
   <div class="banner">
     <strong>FIXTURE PREVIEW / 非正式验收：</strong>
-    真实 8 城表、16 个真实源、8 份离线音频、实屏和 IO 均未交付。
+    真实 8 城表、16 个真实源、8 份离线音频与实屏仍未交付；外设 IO 已接收，UART 与模组/电气核对待补。
     本页面只验证逻辑坐标、弧线、光点、待机动画和状态展示，不代表正式 8 城落点或实屏验收。
   </div>
   <div class="grid">

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-24T14:10:20.714918+00:00",
+  "generated_at": "2026-11-25T11:14:08.797056+00:00",
   "status": "blocked",
   "release_ready": false,
   "facts": {
@@ -49,10 +49,10 @@
     },
     {
       "id": "A1-io",
-      "name": "真实 IO 已填写且无默认 GPIO",
+      "name": "两板 IO 完整且通过冲突与模组校验",
       "passed": false,
-      "evidence": "config/hardware_pins.local.h",
-      "detail": "未填写"
+      "evidence": "/Users/bruce/Documents/club/radio-project/config/hardware_pins_a.h; /Users/bruce/Documents/club/radio-project/config/hardware_pins_b.h",
+      "detail": "板 A: 缺少 IO：RADIO_PIN_LINK_TX, RADIO_PIN_LINK_RX; 板 A: RADIO_HARDWARE_CONFIGURED 未启用；UART、模组与电气核对完成后才能设为 1; 板 B: 缺少 IO：RADIO_PIN_LINK_TX, RADIO_PIN_LINK_RX; 板 B: RADIO_DISPLAY_CONFIGURED 未启用；UART、模组与电气核对完成后才能设为 1; 板 B: GPIO[35, 36, 37] 与八线 Flash/PSRAM 复用；模组未确认，缺少 RADIO_OCTAL_MEMORY_PRESENT（核对实物后填写 0 或 1）; 板 B: GPIO45 是启动配置脚；缺少 RADIO_GPIO45_STRAP_VERIFIED 1（核对 VDD_SPI 与外部负载）"
     },
     {
       "id": "A1-secrets",
@@ -132,12 +132,34 @@
       "detail": "complete"
     }
   ],
+  "hardware_configuration": {
+    "a": {
+      "path": "/Users/bruce/Documents/club/radio-project/config/hardware_pins_a.h",
+      "passed": false,
+      "errors": [
+        "缺少 IO：RADIO_PIN_LINK_TX, RADIO_PIN_LINK_RX",
+        "RADIO_HARDWARE_CONFIGURED 未启用；UART、模组与电气核对完成后才能设为 1"
+      ],
+      "sha256": "541572915d48841fa52dc139bca2165d54c8a6ba00393710b830b80052c86b3f"
+    },
+    "b": {
+      "path": "/Users/bruce/Documents/club/radio-project/config/hardware_pins_b.h",
+      "passed": false,
+      "errors": [
+        "缺少 IO：RADIO_PIN_LINK_TX, RADIO_PIN_LINK_RX",
+        "RADIO_DISPLAY_CONFIGURED 未启用；UART、模组与电气核对完成后才能设为 1",
+        "GPIO[35, 36, 37] 与八线 Flash/PSRAM 复用；模组未确认，缺少 RADIO_OCTAL_MEMORY_PRESENT（核对实物后填写 0 或 1）",
+        "GPIO45 是启动配置脚；缺少 RADIO_GPIO45_STRAP_VERIFIED 1（核对 VDD_SPI 与外部负载）"
+      ],
+      "sha256": "e40de0165a184ed1d540849ab30546393e566325db4458b614d2ef48f96d1763"
+    }
+  },
   "blockers": [
     "B01 正式 8 城表不完整，严格发布校验失败。",
     "B03 缺 8 份合法离线音频及逐源来源记录。",
     "B02 缺 16 条真实在线源及逐源实测记录。",
     "B04 既有完整播放器源码、依赖和构建脚本未接收。",
-    "B05 硬件 IO 未确认；硬件构建必须明确失败，不能采用默认 GPIO。",
+    "B05 外设 IO 清单已接收；仍缺两板 UART 与模组/存储器、GPIO45 电气核对，或配置未通过校验。",
     "B06 本地 Wi-Fi 配置缺失；不影响主机逻辑，但阻止实机联调。",
     "B07 本机未安装 arduino-cli，未执行 S3 真实编译。",
     "B08 未生成任何 .bin；不得宣称存在可刷写固件。",
@@ -150,7 +172,7 @@
     "8 份 MP3 离线音频、时长、码率、来源与使用说明。",
     "16 条真实主备 URL、台名、编码、首播与持续播放记录。",
     "partner 既有完整播放器工程、ESP32-audioI2S 4.0.1 副本与校验值。",
-    "板 A/板 B 实际模组、Flash/PSRAM、分区、屏幕与全部 IO 分配。",
+    "两板 UART TX/RX；实际模组、Flash/PSRAM、分区与屏幕；板 B GPIO35/36/37 占用及 GPIO45 启动电平核对。",
     "Arduino CLI、Arduino-ESP32 3.3.12、ESP32-audioI2S 4.0.1 依赖及校验值。",
     "目标板、真实网络/音频/屏幕/IO 条件下的 T01-T22 实测证据。"
   ],
@@ -269,21 +291,24 @@
   "sha256": {
     "../output/短波穿越电台软件开发计划.docx": "f2334b534152540ded025cb187688572aa7e1e8c73419f12bfdc1405c8383258",
     "../output/短波穿越电台软件开发计划.md": "f19ee66864122cbf1795fbc58e08839066e39e5a4fcb911dc4ad262265d65b29",
-    "README.md": "0158918c01a347ff4c4aa943c7fc56700086ed6fa1a74248ff9d58ca6759ec8e",
+    "README.md": "b3745d1760b2ca4d95fe40ba5731a1fc020fe9ddc15bc61327c67aec70fc3a6a",
     "config/cities.json": "4ba2c7a6b13ba804802542d70d025360624bbbc4c7ef6573f32f88d71d8dbbc2",
-    "config/environment.lock.md": "c287b4d2c70097b6e0b74762964287f1ff1cb005b51a58546f6df291113c7146",
-    "config/hardware_pins.example.h": "c7f720ea5a0f70c1aecd747b5f053a422f4af540700419e8df78540d38544630",
+    "config/environment.lock.md": "915b9434ead35a2ce0a325b371ccd0ccd7f9952ffe283f1958ffb28cd49f5c06",
+    "config/hardware_pins.example.h": "b89632e50b5cd879b65d996ab4906bc19061b402daa061f08abf314eff21c98b",
+    "config/hardware_pins_a.h": "541572915d48841fa52dc139bca2165d54c8a6ba00393710b830b80052c86b3f",
+    "config/hardware_pins_b.h": "e40de0165a184ed1d540849ab30546393e566325db4458b614d2ef48f96d1763",
     "docs/audio-integration.md": "15ce94642cb7270d5794acfd118d14bc166f5fd0f9b56aa2c84015beb1a3640f",
-    "docs/build-and-upload.md": "77d87a5c7d2c910a5d66210fa840095f7d874b4c31d9c8dd236cf957afc198d2",
-    "docs/continued-development.md": "0f23ce9e89909217dfec7284e67a586fe97a94325c9d91fdeaa32999557a1b1e",
-    "docs/delivery-report.md": "8e50a966799abedf42ef89a6237dfb82feeaa41375ba44ef9b6ecae68b2aaea4",
-    "docs/display-integration.md": "2011a783e0abfedb7ee9c6de228dec1545efc481f4e37aea3cdef12adda950ab",
+    "docs/build-and-upload.md": "4259ce5436d192db21e8f5d51e1697a35e0e2e83225c05cf1488a1e0d6fe7b6d",
+    "docs/continued-development.md": "e85b838be24c9c558fb40b014125668a71d8c8841eeebbd9be6426e4a61d44ff",
+    "docs/delivery-report.md": "c587b25b060a74045f219446926aa962eafc1195b0b2464b6fbd309399995dc6",
+    "docs/display-integration.md": "0583dba0ad65dfba51df2ebfe5cf1eda73ba11edaffea16e3b192b8b0efa640d",
+    "docs/hardware-io-review.md": "aa861ce41f230b0f5049204bc4c01bd149022719a8f9d604becd81604c31795e",
     "docs/hardware-test-matrix.md": "afa38832b54b2673508f190f8f137556248dd196be879f159b93acf6a49f47cc",
-    "docs/materials.md": "02dbbd6986996fbf048cc02bcc331c44bd2f629dfbe9f9c65be02ff18a069844",
-    "docs/missing-inputs.md": "c67d91e22084cea7b8a30ca10c247269f90690c19572f7f563929862e71e2672",
+    "docs/materials.md": "74df7ec3dd720bbd6d98e2c20693d8e274ca264237691a66bfde503557e02688",
+    "docs/missing-inputs.md": "17386f8bd088abb18d4446b1aaf20bbe82f75c7fa7755913f03818b7e3633691",
     "docs/player-integration-status.md": "dc9dfd0ee69d02ba0048d83a60a907d008672c5457dfc8bdf25257edd5b22a8f",
     "docs/protocol-v2.md": "2b827bcf3c23c695c8212bb257dc13c98765520f57f8e10a37c91ed7f53fc675",
-    "evidence/README.md": "efc68aeecc1b70a8bae4c82973888859178edd9bc8958d47756d6e467ff94877",
+    "evidence/README.md": "a7d37faa1d801be9001bca448ddc12b56ad5ce7d74039e66a3f5957ea6c9d25a",
     "firmware/display_b/display_controller.cpp": "f72bad5a13acd8fe4b2f250296d86558c42634884f3259736941b5250b8289ca",
     "firmware/display_b/display_controller.h": "a9b218eb1af6358903d74a5af18e5a99487018e869d7c778ca2ba386f78ce487",
     "firmware/display_b/display_link.cpp": "cc2e114e32f07c8b75bf713702123867f73b258eecc2f274f19a7b5964ae6883",
@@ -309,16 +334,19 @@
     "firmware/shared/source_manager.cpp": "870969d24ba74f05f0c6aaa652aae99fb851a53d8d72b737794765cec09b242d",
     "firmware/shared/source_manager.h": "c9a4894ed77e373e9bf2b2fcd628f154bfe60ff6278fc4ebef429b50cc4c31b3",
     "release/README.md": "e28b555af777dbb645a08bb22366e30a9f1e2d51625594bd8f651ebc7c9d8dfd",
-    "scripts/audit_delivery.py": "93d16f1bbe3feb55079374149e69f7b5342a58c95b84af3c579d29290a31704e",
-    "scripts/build_firmware.py": "2e773e54dd997fc80e573dabebb7067b913d96df5caa963fb38caf4f0e20f520",
+    "scripts/audit_delivery.py": "a8f55b97bfa6dae33aaa37e2208d662c6f7fe61993f7bde2c730d52cf35362c2",
+    "scripts/build_firmware.py": "1ed3cca77bd4deb14f56b117630e243265f4c4b3b189d917937e595c1600d451",
     "scripts/check_config.py": "e1a4d2944cf32af17442ce1c9bd21389791d858776916f079050ea818c1fdc74",
     "scripts/check_documents.py": "49acdc56ec18a127655790efc62b709dca9d270488989e4590a195521710738b",
+    "scripts/check_hardware.py": "5b77fb1eaacda5d1f0d3d66f596c8b84a7d002964d51f49252f19bb0a9c24374",
     "scripts/generate_city_data.py": "4dcde174235cd191ccb65088a1fb65a3a5b9f36938bd27bcd12a5343fae34b08",
+    "scripts/hardware_config.py": "125a3449824071ab564f4cd3d8d53566ac272c1dfa0b40fd2f3c0d1f807cea26",
     "scripts/radio_config.py": "cae9af17520864a46d38302f203ed71a201fee521febed2d6fa8d9869cd5449f",
     "scripts/run_host_tests.py": "5ab5c8f2eacf152f525b8c8295ce89ad9340a618683a0ccfe690cc908f388010",
-    "scripts/simulate_display.py": "c6363e2174173f0e45b87f9e9acac286d9fc766b57d70df26298baca2c55183f",
+    "scripts/simulate_display.py": "7728d1a3562a0755c1558fc238133b53ce83913fb5b73b25db48c9dfb7ee62aa",
     "tests/config/test_fixture_isolation.py": "9ef076298a1b40962fd9ac3dfd03e27654f17aceeb74e55840dd7f2b5bf322b8",
     "tests/config/test_generate_city_data.py": "8b41df37534c1e64ab9aff68d15515cdddd3ba4dcac008ef96ad59b2b59985d6",
+    "tests/config/test_hardware_config.py": "d3fd35c18c7191637c2947b5cdd3dacee87b081ccbfb626875bc5230701596d2",
     "tests/config/test_radio_config.py": "37c4aa37302bd81219022b947dd0d2652ce4bd4017a3f6e30f359bb6c816801d",
     "tests/config/test_timing_and_protocol.py": "51ffb3c4cebac306ead78e12d1e88f52408b157a3e218e9c5424579079e5ed7c",
     "tests/fixtures/cities.json": "825a9bc22ac34ec0d90a8387101beac57e081ce6cc88db8531ffa86c55a2bea3",

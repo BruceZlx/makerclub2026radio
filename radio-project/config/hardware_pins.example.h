@@ -1,44 +1,19 @@
 #pragma once
 
-// 硬件引脚模板：只列出配置项名称，不提供任何 GPIO 默认值。
+// 配置方法（2026-11-25）：不要再让两板共用 hardware_pins.local.h。
+// 板 A：复制 hardware_pins_a.h 为 hardware_pins_a.local.h。
+// 板 B：复制 hardware_pins_b.h 为 hardware_pins_b.local.h。
+// 每份 local 文件是完整的单板配置，不是 #include 或增量覆盖。
+// 也可用 build_firmware.py / check_hardware.py 的 --pins 指定完整文件。
 //
-// 使用方法：复制为 config/hardware_pins.local.h，由硬件组逐项填写实际
-// 模组、Flash/PSRAM、屏幕与 IO 分配。local 文件已被 .gitignore 排除。
-// 任何 RADIO_PIN_* 未定义、非数字或超出 0..48 时，硬件构建必须失败。
+// 已收到的外设接线在对应共享头文件中，不是猜测的默认引脚。
+// 两板仍缺 RADIO_PIN_LINK_TX / RADIO_PIN_LINK_RX，不要凭空填写。
+// 板 B 使用 GPIO35/36/37：核对实物后填写 RADIO_OCTAL_MEMORY_PRESENT 0 或 1。
+// 如果为 1，必须重新分配与八线存储器冲突的屏幕引脚，不能仅关闭 PSRAM 选项。
+// GPIO45 用作屏幕 A：核对 VDD_SPI 启动电平后填写 RADIO_GPIO45_STRAP_VERIFIED 1。
+// 完成模组、UART 与电气核对后，才能将该板 CONFIGURED 标记设为 1。
 //
-// 板 A 必填：
-//   RADIO_PIN_AUDIO_BCLK
-//   RADIO_PIN_AUDIO_LRCLK
-//   RADIO_PIN_AUDIO_DOUT
-//   RADIO_PIN_ENCODER_A
-//   RADIO_PIN_ENCODER_B
-//   RADIO_PIN_ENCODER_SW
-//   RADIO_PIN_LINK_TX
-//   RADIO_PIN_LINK_RX
-//   RADIO_PIN_SD_SCK
-//   RADIO_PIN_SD_MISO
-//   RADIO_PIN_SD_MOSI
-//   RADIO_PIN_SD_CS
-//   RADIO_HARDWARE_CONFIGURED 1
-//
-// 板 B 必填：
-//   RADIO_PIN_LINK_TX
-//   RADIO_PIN_LINK_RX
-//   RADIO_PIN_PANEL_R1
-//   RADIO_PIN_PANEL_G1
-//   RADIO_PIN_PANEL_B1
-//   RADIO_PIN_PANEL_R2
-//   RADIO_PIN_PANEL_G2
-//   RADIO_PIN_PANEL_B2
-//   RADIO_PIN_PANEL_CLK
-//   RADIO_PIN_PANEL_LAT
-//   RADIO_PIN_PANEL_OE
-//   RADIO_PIN_PANEL_A
-//   RADIO_PIN_PANEL_B
-//   RADIO_PIN_PANEL_C
-//   RADIO_PIN_PANEL_D
-//   RADIO_PIN_PANEL_E
-//   RADIO_DISPLAY_CONFIGURED 1
-//
-// 说明：GPIO 编号本身不是默认值；只有硬件组确认后才能写入 local 文件。
-// 本模板故意不定义任何宏。
+// 文件只支持 #pragma once 和十进制整数 #define，允许行注释与块注释。
+// 不支持表达式、别名、#if 或 #include，避免校验值与编译值不一致。
+// EN 是专用复位端，不定义 RADIO_PIN_RESET，也不为其编造 GPIO。
+// 完整接线与评审结论见 docs/hardware-io-review.md。
